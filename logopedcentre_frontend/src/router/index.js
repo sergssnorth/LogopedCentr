@@ -1,23 +1,56 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Home.vue'
+import Home from '../views/Home.vue'
+import AboutUs from '../views/AboutUs.vue'
 import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
-import Specialists from '../views/Specialists.vue'
-import Record from '../views/Search.vue'
 import MyAccount from '../views/MyAccount.vue'
+import Specialists from '../views/Specialists.vue'
+import Record from '../views/Record.vue'
+import MyRecords from '../views/MyRecords.vue'
 import store from '../store'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/about-us',
+    name: 'AboutUs',
+    component: AboutUs
   },
+  {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/log-in',
+    name: 'LogIn',
+    component: LogIn
+  },
+  {
+    path: '/my-account',
+    name: 'MyAccount',
+    component: MyAccount
+  },
+  {
+    path: '/specialists',
+    name: 'Specialists',
+    component: Specialists
+  },
+  {
+    path: '/records',
+    name: 'Record',
+    component: Record
+  },
+  {
+    path: '/my-records',
+    name: 'MyRecords',
+    component: MyRecords
+  },
+
 ]
 
 
