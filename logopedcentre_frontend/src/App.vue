@@ -68,11 +68,10 @@
     <section class="section is-spaced">
       <router-view/>
     </section>
-    <footer class="footer has-text-centered is-flex-align-items-flex-end mt-auto">
-      <p class="has-text-centered">Copyright (c) 2023</p>
-    </footer>
+    
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -153,4 +152,9 @@ export default{
     height: 80px;
   }
 }
+* {
+  margin: 0;
+  padding: 0;
+}
+
 </style>

@@ -2,18 +2,18 @@
     <div class="page-log-in">
         <div class="columns">
             <div class="column is-4 is-offset-4">
-                <h1 class="title">Log in</h1>
+                <h1 class="title mb-5">Вход</h1>
 
                 <form @submit.prevent="submitForm">
                     <div class="field">
-                        <label>Username</label>
+                        <label>Логин</label>
                         <div class="control">
                             <input type="text" class="input" v-model="username">
                         </div>
                     </div>
 
                     <div class="field">
-                        <label>Password</label>
+                        <label>Пароль</label>
                         <div class="control">
                             <input type="password" class="input" v-model="password">
                         </div>
@@ -25,13 +25,13 @@
 
                     <div class="field">
                         <div class="control">
-                            <button class="button is-dark">Log in</button>
+                            <button class="button is-info is-outlined  mt-5">Вход</button>
                         </div>
                     </div>
 
                     <hr>
 
-                    Or <router-link to="/sign-up">click here</router-link> to sign up!
+                    Или <router-link to="/sign-up">зарегистрируйтесь</router-link> прямо сейчас!
                 </form>
             </div>
         </div>
@@ -64,6 +64,8 @@ export default {
                 password: this.password
             }
 
+            console.log(formData)
+            
             await axios
                 .post("/api/v1/token/login/", formData)
                 .then(response => {
