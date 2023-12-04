@@ -7,6 +7,7 @@ import MyAccount from '../views/MyAccount.vue'
 import Specialists from '../views/Specialists.vue'
 import Record from '../views/Record.vue'
 import MyRecords from '../views/MyRecords.vue'
+import Directions from '../views/Directions.vue'
 import store from '../store'
 
 const routes = [
@@ -50,7 +51,11 @@ const routes = [
     name: 'MyRecords',
     component: MyRecords
   },
-
+  {
+    path: '/directions',
+    name: 'Directions',
+    component: Directions
+  },
 ]
 
 

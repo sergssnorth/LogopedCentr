@@ -3,44 +3,43 @@
     
       <div class="columns is-multiline">
         <div class="column is-12">
-          <h2 class="is-size-3 has-text-centered">Наши специалисты:</h2>
+          <h2 class="is-size-3 has-text-centered">Направления работы:</h2>
         </div>
         
-        <SpecialistBox
-          v-for="specialist in latestSpecialists"
-          v-bind:key = "specialist.id"
-          v-bind:specialist = "specialist" />
-
+        <DirectionBox
+          v-for="direction in latestDirections"
+          v-bind:key = "direction.id"
+          v-bind:direction = "direction" />
+  
       </div>
     </div>
   </template>
   
   <script>
   import axios from 'axios'
-  import SpecialistBox from '@/components/SpecialistBox.vue'
-
+  import DirectionBox from '@/components/DirectionBox.vue'
+  
   export default {
-    name: 'Specialist',
+    name: 'Direction',
     data() {
       return {
-        latestSpecialists: []
+        latestDirections: []
       }
     },
     components: {
-        SpecialistBox
+        DirectionBox
     },
     mounted() {
-      this.getLatestSpecialist()
-      document.title = 'Специалисты | Logoped'
+      this.getLatestDirections()
+      document.title = 'Направления работы | Logoped'
     },
     methods: {
-      async getLatestSpecialist() {
+      async getLatestDirections() {
         this.$store.commit('setIsLoading', true)
-
         await axios.
-          get('/api/v1/latest-specialists/')
+          get('/api/v1/latest-directions/')
           .then(response => {
-            this.latestSpecialists = response.data
+            this.latestDirections = response.data
             console.log
           })
           .catch(error => {

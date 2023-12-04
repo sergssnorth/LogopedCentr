@@ -3,7 +3,7 @@
     <nav class="navbar is-spaced is-size-5">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item">
-          <img src="@/assets/logoped.jpg" width="112" height="">
+          <img src="@/assets/logoped12.jpg" width="112" height="">
         </router-link>
         <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-targer="navbar-menu" @click="showMobileMenu =!showMobileMenu">
           <span aria-hidden="true"></span>
@@ -33,7 +33,8 @@
           </div>
         </div>
         <div class="navbar-end">
-          <router-link to="/record" class="navbar-item">Запись</router-link>
+          <router-link to="/records" class="navbar-item">Запись</router-link>
+          <router-link to="/directions" class="navbar-item">Направления работы</router-link>
           <router-link to="/specialists" class="navbar-item">Специалисты</router-link>
           <router-link to="/about-us" class="navbar-item">О нас</router-link>
 
@@ -42,18 +43,14 @@
               
               <template v-if="$store.state.isAuthenticated">
                 <router-link to="/my-account" class="button is-light">Мой аккаунт</router-link>
-                <router-link to="/cart" class="button is-success">
-                  <span>Мои записи ({{ cartTotalLength }})</span>
+                <router-link to="/my-records" class="button is-info">
+                  <span>Мои записи</span>
                 </router-link>
               </template>
 
               <template v-else>
-                <router-link to="/log-in" class="button is-outlined is-info">
-                  <!-- <span class="icon">
-                    <font-awesome-icon icon="fa-solid fa-house" />
-                  </span> -->
-                  <span>Вход</span>
-                </router-link>
+                <router-link to="/log-in" class="button is-outlined is-info"><span>Вход</span></router-link>
+                <router-link to="/sign-up" class="button is-outlined is-success"><span>Регистрация</span></router-link>
               </template>
             </div>
           </div>

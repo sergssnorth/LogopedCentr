@@ -25,7 +25,7 @@
 
                     <div class="field">
                         <div class="control">
-                            <button class="button is-info is-outlined  mt-5">Вход</button>
+                            <button class="button is-info is-outlined mt-5">Вход</button>
                         </div>
                     </div>
 
@@ -70,15 +70,15 @@ export default {
                 .post("/api/v1/token/login/", formData)
                 .then(response => {
                     console.log(response)
-                    const token = response.data.auth_token
+                    const auth_token = response.data.auth_token
 
-                    this.$store.commit('setToken', token)
+                    this.$store.commit('setToken', auth_token)
                     
-                    axios.defaults.headers.common["Authorization"] = "Token " + token
+                    axios.defaults.headers.common["Authorization"] = "Token " + auth_token
 
-                    localStorage.setItem("token", token)
+                    localStorage.setItem("token", auth_token)
 
-                    const toPath = this.$route.query.to || '/cart'
+                    const toPath = this.$route.query.to || '/'
 
                     this.$router.push(toPath)
                 })
