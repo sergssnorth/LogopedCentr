@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.files import File
-
+from django.contrib.auth.models import User
 from io import BytesIO
 from PIL import Image
 
@@ -72,4 +72,32 @@ class Specialist(models.Model):
         img.save(thumb_io, 'JPEG', quality = 85)
         thumbnail = File(thumb_io, name=image.name)
 
-        return thumbnail 
+        return thumbnail
+    
+
+class UserInformation(models.Model):
+    user = models.ForeignKey(User, related_name='user_information', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    sname = models.CharField(max_length=100)
+    tname = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    passport = models.CharField(max_length=100)
+    class Meta:
+        ordering = ('name',)
+    
+    def __str__(self):
+        return self.name
+    
+class UserChildrenInformation(models.Model):
+    user = models.ForeignKey(User, related_name='user_children_information', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    sname = models.CharField(max_length=100)
+    tname = models.CharField(max_length=100)
+    oms = models.CharField(max_length=100)
+    snils = models.CharField(max_length=100)
+    svidetelstvo = models.CharField(max_length=100)
+    class Meta:
+        ordering = ('name',)
+    
+    def __str__(self):
+        return self.name

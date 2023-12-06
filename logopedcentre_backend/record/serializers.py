@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Direction, DirectionPoints, Specialist
-
+from .models import Direction, DirectionPoints, Specialist, UserInformation, UserChildrenInformation
+from rest_framework.authtoken.models import Token
 
 class DirectionPointsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,6 +34,38 @@ class SpecialistSerializer(serializers.ModelSerializer):
             "sname",
             "tname",
             "slug", 
+        )
+
+class UserInformationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInformation
+        fields = (
+            "name",
+            "sname",
+            "tname",
+            "phone",
+            "passport"
+        )
+
+class UserChildrenInformationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserChildrenInformation
+        fields = (
+            "id",
+            "name",
+            "sname",
+            "tname",
+            "oms",
+            "snils",
+            "svidetelstvo"
+        )
+
+class UserTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Token
+        fields = (
+            "key",
+            "user_id",
         )
 
 class DirectionSpecialistSerializer(serializers.ModelSerializer):

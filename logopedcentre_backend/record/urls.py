@@ -5,7 +5,14 @@ urlpatterns = [
     path('latest-directions/', views.LatestDirectionsList.as_view()),
     path('latest-specialists/', views.LatestSpecialistsList.as_view()),
     path('direction-specialists/<slug:direction_id>/', views.DirectionSpecialistsList.as_view()),
-    
+    path('account/<slug:user_id>/info/', views.AccountInfoDetail.as_view()),
+    path('account/<slug:user_id>/children_info/', views.AccountChildrensInfoDetail.as_view()),
+    path('account/<slug:user_id>/remove_info/', views.DeleteAccountDetail.as_view()),
+    path('get_user_id/<slug:token>/', views.UserIdDetail.as_view()),
+    path('account/add_info/', views.addInfoAccount),
+    path('account/edit_info/', views.editInfoAccount),
+    path('account/add_children/', views.addChildren),
+    path('account/delete_children/', views.deleteChildren),
     
     
     path('directions/<slug:direction_slug>', views.LatestDirectionsList.as_view()),
