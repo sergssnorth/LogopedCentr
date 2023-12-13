@@ -33,13 +33,6 @@
                             <input class="input" type="text" v-model="accountInformation.phone">
                             </div>
                         </div>
-
-                        <div class="field">
-                            <label class="label">Паспорт</label>
-                            <div class="control">
-                            <input class="input" type="text" v-model="accountInformation.passport">
-                            </div>
-                        </div>
                         
                         
                         <button class="button is-info mt-3" @click="editFormAccountInfo" :disabled ='isEditUpdatedDisabled'>Изменить</button>
@@ -82,13 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="field">
-                            <label class="label">Паспорт</label>
-                            <div class="control">
-                            <input class="input" type="text" placeholder="4225231221324221" v-model="accountInformation.passport">
-                            </div>
-                        </div>
-
+                    
                         <div class="field is-grouped">
                             <div class="control">
                                 <button class="button is-success mt-3" @click="saveFormAccountInfo" :disabled ='isAddUpdatedDisabled'>Добавить информацию</button>
@@ -131,25 +118,12 @@
                             </div>
 
                             <div class="field">
-                                <label class="label">№ полиса ОМС</label>
+                                <label class="label">Дата рождения</label>
                                 <div class="control">
-                                <input class="input" type="text" v-model="childrenInformation.oms">
+                                <input class="input" type="date" placeholder="" v-model="childrenInformation.birthdate">
                                 </div>
                             </div>
 
-                            <div class="field">
-                                <label class="label">№ СНИЛС</label>
-                                <div class="control">
-                                <input class="input" type="text" v-model="childrenInformation.snils">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">№ Свидетельства о рождении</label>
-                                <div class="control">
-                                <input class="input" type="text" v-model="childrenInformation.svidetelstvo">
-                                </div>
-                            </div>
                             
                             <button class="button is-success mt-3" @click="saveFormCreateChildrenInfo" :disabled ='isCreateChildrenUpdatedDisabled'>Сохранить</button>
                             <button class="button is-normal is-danger is-light ml-3 mt-3" @click="closeFormChildren">
@@ -170,9 +144,7 @@
 
                                         <div class="column is-11">
                                             <p><strong>ФИО:</strong> {{ children.name }} {{ children.sname }} {{ children.tname }}</p>
-                                            <p><strong>№ полиса ОМС:</strong> {{ children.oms }}</p>
-                                            <p><strong>№ СНИЛС:</strong> {{ children.snils }}</p>
-                                            <p><strong>№ Свидетельства о рождении:</strong> {{ children.svidetelstvo }}</p>
+                                            <p><strong>Дата рождения:</strong> {{ children.birthdate }}</p>
                                         </div>
                                         <div class="column is-1">
                                             <button class="button is-normal is-danger is-light" @click="deleteChildren(children.id)">
@@ -210,7 +182,7 @@
 <script>
 import axios from 'axios'
 import DirectionBox from '@/components/DirectionBox.vue'
-
+import moment from 'moment'
 
 
 export default {
@@ -231,8 +203,6 @@ export default {
                 sname: '',
                 tname: '',
                 phone: '',
-                passport: '',
-                
             },
             accountInformationFilled: false,
 
@@ -242,9 +212,7 @@ export default {
                 name: '',
                 sname: '',
                 tname: '',
-                oms: '',
-                snils: '',
-                svidetelstvo: '',
+                childrenInformation: '',
             },
             all_childrens: [],
             form_create_children_updated: false,
@@ -257,6 +225,7 @@ export default {
         await this.getUserId()
         await this.getMyInformation()
         await this.getMyChildren()
+        await this.correctingTime()
         //console.log(this.user_id)
         //console.log(this.accountInformation)
         //console.log(this.accountInformationFilled)
@@ -506,6 +475,12 @@ export default {
             this.$store.commit('removeToken') 
             this.$router.push('/')
         },
+
+        async correctingTime() {
+            this.all_childrens.forEach((item, index, array) => {
+                item.birthdate = moment(item.birthdate).utc().format('YYYY-MM-DD')
+            });
+        }
 
     }
 }

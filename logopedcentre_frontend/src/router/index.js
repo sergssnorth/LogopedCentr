@@ -8,6 +8,7 @@ import Specialists from '../views/Specialists.vue'
 import Record from '../views/Record.vue'
 import MyRecords from '../views/MyRecords.vue'
 import Directions from '../views/Directions.vue'
+import DirectionSpecialists from '../views/DirectionSpecialists.vue'
 import store from '../store'
 
 const routes = [
@@ -55,6 +56,11 @@ const routes = [
     path: '/directions',
     name: 'Directions',
     component: Directions
+  },
+  {
+    path: '/directions/:direction_slug',
+    name: 'DirectionSpecialists',
+    component: DirectionSpecialists
   },
 ]
 

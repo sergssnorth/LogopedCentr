@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Direction, DirectionPoints, Specialist, UserInformation, UserChildrenInformation
+from .models import Direction, DirectionPoints, Specialist, UserInformation, UserChildrenInformation, SpecialistSchedule
 from rest_framework.authtoken.models import Token
 
 class DirectionPointsSerializer(serializers.ModelSerializer):
@@ -10,20 +10,6 @@ class DirectionPointsSerializer(serializers.ModelSerializer):
             "description",    
         )
 
-# class SpecialistSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Specialist
-#         fields = (
-#             "id",
-#             "name",
-#             "sname",
-#             "tname",
-#             "slug",
-#             "get_absolute_url",
-#             "get_image",
-#             "get_thumbnail",
-#         )
-
 
 class SpecialistSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,7 +19,20 @@ class SpecialistSerializer(serializers.ModelSerializer):
             "name",
             "sname",
             "tname",
-            "slug", 
+            "phone",
+            "slug",
+            "date_added",
+            "get_image",
+        )
+
+class SpecialistScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecialistSchedule
+        fields = (
+            "id",
+            "specialist",
+            "date",
+            "time",
         )
 
 class UserInformationSerializer(serializers.ModelSerializer):
@@ -44,7 +43,6 @@ class UserInformationSerializer(serializers.ModelSerializer):
             "sname",
             "tname",
             "phone",
-            "passport"
         )
 
 class UserChildrenInformationSerializer(serializers.ModelSerializer):
@@ -55,9 +53,7 @@ class UserChildrenInformationSerializer(serializers.ModelSerializer):
             "name",
             "sname",
             "tname",
-            "oms",
-            "snils",
-            "svidetelstvo"
+            "birthdate",
         )
 
 class UserTokenSerializer(serializers.ModelSerializer):
@@ -89,6 +85,7 @@ class DirectionSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "name",
+            "slug",
             "get_absolute_url",
             "directionpoints",
             "specialists",

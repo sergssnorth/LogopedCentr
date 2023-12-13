@@ -31,16 +31,19 @@
         SpecialistBox
     },
     async mounted() {
-      await this.getLatestSpecialist()
+      await this.getDirectionSpecialist()
       await this.correctingTime()
       document.title = 'Специалисты | Logoped'
     },
     methods: {
-      async getLatestSpecialist() {
+      async getDirectionSpecialist() {
         this.$store.commit('setIsLoading', true)
 
+        const direction_slug = this.$route.params.direction_slug
+
+
         await axios.
-          get('/api/v1/latest-specialists/')
+          get(`/api/v1/direction-specialists/${direction_slug}`)
           .then(response => {
             this.latestSpecialists = response.data
             console.log
