@@ -170,11 +170,7 @@
                 <button @click="logout()" class="button is-danger">Выйти</button>
             </div>
 
-            <hr>
-
-            <div class="column is-12">
-                <h2 class="subtitle">Мои записи</h2>
-            </div>
+            
         </div>
     </div>
 </template>
@@ -481,7 +477,6 @@ export default {
                 item.birthdate = moment(item.birthdate).utc().format('YYYY-MM-DD')
             });
         }
-
     }
 }
 </script>
